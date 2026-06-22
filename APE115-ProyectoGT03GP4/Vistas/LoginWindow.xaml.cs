@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APE115_ProyectoGT03GP4.Vistas;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -24,30 +25,27 @@ namespace APE115_ProyectoGT03GP4
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            Task<List<string>> datosUsuario;
+            List<Usuario> datosUsuario;
 
-            Usuario user = new Usuario();
+            
 
-            datosUsuario = user.getUsuario(txtUsuario.Text);
+            datosUsuario = Usuario.getUser(txtUsuario.Text);
 
-            if (datosUsuario.Result.Count == 1)
+            if (datosUsuario.Count == 1)
             {
-                user.setNombreUsuario(datosUsuario.Result[0]);
-                user.setContraseña(datosUsuario.Result[1]);
-                user.setIdTipoUsuario(int.Parse(datosUsuario.Result[2]));
-
-                if (datosUsuario.Result[0] == txtUsuario.Text && datosUsuario.Result[1] == Crypto.Encrypt(txtContra.Password))
+                
+                if (datosUsuario[0].getNombreUsuario() == txtUsuario.Text && Crypto.Decrypt(datosUsuario[0].getContraseña()) == txtContra.Password)
                 {
-                    switch (user.getIdTipoUsuario())
+                    switch (datosUsuario[0].getIdTipoUsuario())
                     {
                         case 1:
-                            MessageBox.Show("¡Bienvenido " + user.getNombreUsuario() + "!", "Login exitoso", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("¡Bienvenido " + datosUsuario[0].getNombreUsuario() + "!", "Login exitoso", MessageBoxButton.OK, MessageBoxImage.Information);
                             VistaAdmin adminWindow = new VistaAdmin();
                             adminWindow.Show();
                             this.Close();
                             break;
                         case 2:
-                            MessageBox.Show("¡Bienvenido " + user.getNombreUsuario() + "!", "Login exitoso", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("¡Bienvenido " + datosUsuario[0].getNombreUsuario() + "!", "Login exitoso", MessageBoxButton.OK, MessageBoxImage.Information);
                             VistaEmpleado EmpleadoWindow = new VistaEmpleado();
                             EmpleadoWindow.Show();
                             this.Close();
@@ -58,9 +56,28 @@ namespace APE115_ProyectoGT03GP4
                 }
                 else
                 {
-                    MessageBox.Show("Usuario o contraseña incorrectos.", "Error de login", MessageBoxButton.OK, MessageBoxImage.Error);
+                    //txtUsuario.Text = Crypto.Encrypt(txtContra.Password);
+                    MessageBox.Show("Usuario o contraseña incorrectos. ", "Error de login", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnRegistrar_Click(object sender, RoutedEventArgs e)
+        {
+            
+
+        }
+
+        private void btnCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarUsuario agregarUsuarioWindow = new AgregarUsuario();
+            agregarUsuarioWindow.Show();
+            this.Close();
         }
     }
 }

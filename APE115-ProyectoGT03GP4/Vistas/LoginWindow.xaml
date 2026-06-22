@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:APE115_ProyectoGT03GP4"
         mc:Ignorable="d"
         Title="LoginWindow" Height="335" Width="730" ResizeMode="NoResize" FontSize="14" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,10,28,89">
+    <Grid Margin="0,10,28,91">
         <Image HorizontalAlignment="Left" Height="126" Margin="25,50,0,0" VerticalAlignment="Top" Width="172" Source="/inventario-icon.png"/>
         <Label Content="Nombre de Usuario" HorizontalAlignment="Left" Margin="237,37,0,0" VerticalAlignment="Top" ContentStringFormat=""/>
         <Label Content="Contraseña" HorizontalAlignment="Left" Margin="237,109,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtUsuario" HorizontalAlignment="Left" Margin="237,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="439" Height="36" FontSize="14"/>
         <PasswordBox x:Name="txtContra" HorizontalAlignment="Left" Margin="237,140,0,0" VerticalAlignment="Top" Width="439" Height="36" FontSize="14"/>
         <Grid Margin="0,0,0,162"/>
-        <Grid Margin="0,215,0,-73">
+        <Grid Margin="0,229,0,-80">
             <Button x:Name="btnLogin" Content="Iniciar Sesion" HorizontalAlignment="Left" Margin="26,12,0,0" VerticalAlignment="Top" Height="43" Width="290" BorderBrush="#FFECECED" Background="#FF0C2EB5" FontSize="14" FontWeight="Bold" Cursor="Hand" Foreground="#FFEDF1F6" Click="btnLogin_Click">
                 <Button.Style>
                     <Style/>
@@ -22,7 +22,7 @@
                     <Style/>
                 </Button.FocusVisualStyle>
             </Button>
-            <Button x:Name="btnCerrar" Content="Salir" HorizontalAlignment="Left" Margin="388,12,0,0" VerticalAlignment="Top" Height="43" Width="290" BorderBrush="#FFECECED" Background="#FFB5220C" FontSize="14" FontWeight="Bold" Cursor="Hand" Foreground="#FFEDF1F6">
+            <Button x:Name="btnRegistrar" Content="Registrarse" HorizontalAlignment="Left" Margin="388,12,0,0" VerticalAlignment="Top" Height="43" Width="290" BorderBrush="#FFECECED" Background="#FFB5220C" FontSize="14" FontWeight="Bold" Cursor="Hand" Foreground="#FFEDF1F6" Click="btnCerrar_Click">
                 <Button.Style>
                     <Style/>
                 </Button.Style>

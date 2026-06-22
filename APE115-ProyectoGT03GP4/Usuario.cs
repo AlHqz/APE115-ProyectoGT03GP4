@@ -13,7 +13,12 @@ namespace APE115_ProyectoGT03GP4
         private string contraseña; // contraseña cifrada
         private int idTipoUsuario;
 
-        private dbConnect con = new dbConnect();
+        public Usuario(string nombreUsuario, string contraseña, int idTipoUsuario,bool cyp)
+        {
+            this.nombreUsuario = nombreUsuario;
+            setContraseña(contraseña,cyp); // Cifrar la contraseña al establecerla
+            this.idTipoUsuario = idTipoUsuario;
+        }
 
         public void setNombreUsuario(string nombre)
         {
@@ -35,9 +40,17 @@ namespace APE115_ProyectoGT03GP4
             return idTipoUsuario;
         }
 
-        public void setContraseña(string contraseña)
+        public void setContraseña(string contraseña,bool cyphered)
         {
-            this.contraseña = Crypto.Encrypt(contraseña);
+            if(cyphered)
+            {
+                this.contraseña = contraseña;
+            }
+            else
+            {
+                this.contraseña = Crypto.Encrypt(contraseña);
+            }
+            
         }
 
         public string getContraseña()
@@ -46,57 +59,59 @@ namespace APE115_ProyectoGT03GP4
             return this.contraseña;
         }
 
-        public async Task<List<string>> getUsuario(string username)
+        public bool addUser(string nombreUsuario, string contraseña, int idTipoUsuario)
         {
-            var datosUsuario = new List<string>();
-
-            if (string.IsNullOrWhiteSpace(username)) return datosUsuario; // Retorna lista vacía
-
-            string query = "SELECT nombreUsuario, contra, idTipoUsuario FROM usuario WHERE nombreUsuario = @username LIMIT 1;";
-
-            var conn = await con.GetConnectionAsync();
-
-            using (var command = new MySqlCommand(query))
+            string query = "INSERT INTO usuario (nombreUsuario, contra, idTipoUsuario) VALUES (@nombreUsuario, @contra, @idTipoUsuario)";
+            try
             {
-                command.Parameters.AddWithValue("@username", username.Trim());
-
-                using (var reader = await command.ExecuteReaderAsync())
+                using (MySqlConnection conn = ConexionBD.Conectar())
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
-                    if (await reader.ReadAsync())
+                    cmd.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
+                    cmd.Parameters.AddWithValue("@contra", contraseña);
+                    cmd.Parameters.AddWithValue("@idTipoUsuario", idTipoUsuario);
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0; // Retorna true si se insertó al menos una fila
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al agregar el usuario: " + ex.Message);
+            }
+        }
+
+        
+        public static List<Usuario> getUser(string user)
+        {
+            List<Usuario> lista = new List<Usuario>();
+            string query = "SELECT * FROM usuario WHERE nombreUsuario = @user";
+
+            try
+            {
+                using (MySqlConnection conn = ConexionBD.Conectar())
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@user", user);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        // Agregamos cada columna como un string a la lista
-                        datosUsuario.Add(reader.GetString("nombreUsuario"));
-                        datosUsuario.Add(reader.GetString("contra"));
-                        datosUsuario.Add(reader.GetInt32("idTipoUsuario").ToString());
+                        while (reader.Read())
+                        {
+                            lista.Add(new Usuario(
+                                reader.GetString("nombreUsuario"),
+                                reader.GetString("contra"),
+                                reader.GetInt32("idTipoUsuario"), 
+                                true
+                            ));
+                        }
                     }
                 }
             }
-
-            return datosUsuario; // Si no lo encuentra, la lista tendrá 0 elementos (Count == 0)
-        }
-
-
-        /*public List[string,string] getUser(string usuario) { 
-
-            List<string> users = new List<string>();
-
-
-            dbConnect db = new dbConnect();
-            db.GetConnectionAsync().Wait();
-
-            DataTable dt = db.ExecuteQueryAsync("SELECT * FROM usuarios WHERE nombre_usuario = @usuario", new MySqlParameter("@usuario", usuario)).Result;
-
-            while (dt.Rows.Count > 0)
+            catch (Exception ex)
             {
-                foreach (DataRow row in dt.Rows)
-                {
-                    users.Add(row["nombre_usuario"].ToString());
-                    users.Add(row["contraseña"].ToString());
-
-                }
+                throw new Exception("Error al filtrar por categoría: " + ex.Message);
             }
-
-        }*/
+            return lista;
+        }
 
 
     }
