@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace APE115_ProyectoGT03GP4.Vistas.Admin
+{
+    public partial class EliminarProducto : Page
+    {
+        public EliminarProducto()
+        {
+            InitializeComponent();
+
+            List<Producto> productos = VistasProducto.ObtenerProductos();
+            DtgProductos.ItemsSource = productos;
+        }
+
+        private void BuscarProducto(object sender, RoutedEventArgs e)
+        {
+            if(!String.IsNullOrEmpty(TxtProducto.Text))
+            {
+                List<Producto> productos = VistasProducto.BuscarProducto(TxtProducto.Text);
+                DtgProductos.ItemsSource = productos;
+            }
+        }
+
+        private void BtnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            if (DtgProductos.SelectedItem != null)
+            {
+                Producto prod = (Producto)DtgProductos.SelectedItem;
+                GestionAdmin.EliminarProducto(prod.IdProducto);
+
+                List<Producto> productos = VistasProducto.ObtenerProductos();
+                DtgProductos.ItemsSource = productos;
+            }
+        }
+    }
+}

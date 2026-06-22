@@ -5,46 +5,60 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:APE115_ProyectoGT03GP4.Vistas"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="850"
       Title="Stock">
 
-    <Grid Margin="20">
+    <Grid Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <DockPanel Grid.Row="0" Margin="10,0,10,15" LastChildFill="False">
-            <TextBlock Text="Stock Actual" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+        <DockPanel Grid.Row="0" Margin="5,0,5,10" LastChildFill="False">
+            <TextBlock DockPanel.Dock="Left" Text="Stock Actual" FontSize="20" FontWeight="Bold" VerticalAlignment="Center"/>
 
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBlock Text="Filtrar por categoría: " FontSize="13" VerticalAlignment="Center" Margin="50,0,15,0"/>
-                <ComboBox x:Name="CmbCategoria" Width="180" Height="28" VerticalContentAlignment="Center"
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="Filtrar por categoría: " FontSize="13" VerticalAlignment="Center" Margin="15,0,5,0"/>
+                <ComboBox x:Name="CmbCategoria" Width="140" Height="25" VerticalContentAlignment="Center"
                           DisplayMemberPath="Nombre" SelectedValuePath="IdCategoria" SelectionChanged="CmbCategoria_SelectionChanged"/>
+
+                <TextBlock Text="Producto: " FontSize="13" VerticalAlignment="Center" Margin="20,0,5,0"/>
+                <TextBox x:Name="TxtProducto" Width="120" Height="25" VerticalContentAlignment="Center" ToolTip="Ctrl+F"/>
+
+                <Button x:Name="BtnBuscar" Content="Buscar" Width="75" Height="25" Margin="10,0,0,0" FontWeight="Bold" Click="BuscarProducto"/>
             </StackPanel>
         </DockPanel>
 
-        <DataGrid x:Name="DtgProductos" Grid.Row="1" AutoGenerateColumns="False" Margin="10" 
-                  AlternatingRowBackground="#F9F9F9" GridLinesVisibility="Horizontal" HeadersVisibility="Column">
+        <DataGrid x:Name="DtgProductos" Grid.Row="1" AutoGenerateColumns="False" Margin="5" 
+                  AlternatingRowBackground="#F2F2F2" GridLinesVisibility="Horizontal" HeadersVisibility="Column">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID Producto" Binding="{Binding IdProducto}" Width="80"/>
                 <DataGridTextColumn Header="Descripción / Nombre" Binding="{Binding Descripcion}" Width="*"/>
-                <DataGridTextColumn Header="Cantidad disponible" Binding="{Binding Stock}" Width="150"/>
-                <DataGridTextColumn Header="Precio Unitario" Binding="{Binding Precio, StringFormat={}{0:C}}" Width="120"/>
+                <DataGridTextColumn Header="Stock Disp." Binding="{Binding Stock}" Width="95"/>
+                <DataGridTextColumn Header="Stock Mín." Binding="{Binding StockMinimo}" Width="95"/>
+                <DataGridTextColumn Header="Precio Unitario" Binding="{Binding Precio, StringFormat={}{0:C}}" Width="110"/>
+                <DataGridTextColumn Header="Total" Binding="{Binding Total, StringFormat={}{0:C}}" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
-        <!--Botones para modificar stock-->
 
-        <UniformGrid Grid.Row="3" Columns="3" Margin="10,15,10,10" Height="45">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBlock Text="Cantidad: " FontSize="13" VerticalAlignment="Center" Margin="50,0,15,0"/>
-                <TextBox x:Name="TxtCantidad" Width="100"/>
+        <Grid Grid.Row="2" Margin="5,10,5,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="Cantidad:" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                <TextBox x:Name="TxtCantidad" Width="80" Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold"/>
             </StackPanel>
-            <Button x:Name="BtnAgregar" Content="➕ Agregar Stock" FontSize="14" FontWeight="SemiBold" 
-                    Background="#2ECC71" Foreground="White" Margin="0,0,10,0" Click="AgregarStock"/>
-            <Button x:Name="BtnRetirar" Content="➖ Retirar Stock" FontSize="14" FontWeight="SemiBold" 
-                    Background="#E74C3C" Foreground="White" Margin="10,0,0,0" Click="RetirarStock"/>
-        </UniformGrid>
+
+            <UniformGrid Grid.Column="1" Columns="2" Margin="20,0,0,0" Height="35">
+                <Button x:Name="BtnAgregar" Content="➕ Agregar Stock" FontSize="13" FontWeight="Bold" 
+                        Background="#2ECC71" Foreground="White" Margin="0,0,10,0" Click="AgregarStock"/>
+                <Button x:Name="BtnRetirar" Content="➖ Retirar Stock" FontSize="13" FontWeight="Bold" 
+                        Background="#E74C3C" Foreground="White" Margin="10,0,0,0" Click="RetirarStock"/>
+            </UniformGrid>
+        </Grid>
     </Grid>
 </Page>

@@ -13,9 +13,8 @@
         </Grid.RowDefinitions>
         <!--Menú de opciones universal-->
         <Menu Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Padding="5">
-            <MenuItem Header="Stock" Command="{x:Static local:VistaEmpleado.NavegarStockCmd}" InputGestureText="Ctrl+Q"/>
-            <MenuItem Header="Agregar/Retirar" Margin="15, 0, 0, 0" Command="{x:Static local:VistaEmpleado.NavegarGestionCmd}" InputGestureText="Ctrl+G"/>
-            <MenuItem Header="Informe" Margin="15, 0, 0, 0" Command="{x:Static local:VistaEmpleado.NavegarInformeCmd}" InputGestureText="Ctrl+I"/>
+            <MenuItem Header="Stock" Command="{x:Static local:VistaEmpleado.NavegarStockCmd}" InputGestureText="Ctrl+Q" ToolTip="Visualizar Stock (Ctrl+Q)"/>
+            <MenuItem Header="Informe" Margin="15, 0, 0, 0" Command="{x:Static local:VistaEmpleado.NavegarInformeCmd}" InputGestureText="Ctrl+I" ToolTip="Informe (Ctrl+I)"/>
         </Menu>
         <!---Resto del contenido en la pantalla-->
         <Frame x:Name="AreaContenido" 

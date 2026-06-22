@@ -7,6 +7,27 @@
         mc:Ignorable="d"
         Title="VistaAdmin" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Menú de opciones universal-->
+        <Menu Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Padding="5">
+            <MenuItem Header="Stock" Command="{x:Static local:VistaAdmin.NavegarStockCmd}" InputGestureText="Ctrl+Q" ToolTip="Visualizar Stock (Ctrl+Q)"/>
+            <MenuItem Header="Informe" Margin="15, 0, 0, 0" Command="{x:Static local:VistaAdmin.NavegarInformeCmd}" InputGestureText="Ctrl+I" ToolTip="Informe (Ctrl+I)"/>
+            <MenuItem Header="Categoria" Margin="15, 0, 0, 0">
+                <MenuItem Header="Agregar Nueva" Click="NavegarAgregarCategoria"/>
+                <MenuItem Header="Eliminar" Click="NavegarEliminarCategoria"/>
+            </MenuItem>
+            <MenuItem Header="Producto" Margin="15, 0, 0, 0">
+                <MenuItem Header="Agregar Nuevo" Click="NavegarAgregarProducto"/>
+                <MenuItem Header="Eliminar" Click="NavegarEliminarProducto"/>
+            </MenuItem>
+        </Menu>
+        <!---Resto del contenido en la pantalla-->
+        <Frame x:Name="AreaContenido" 
+           Grid.Row="1" 
+           Source="/Vistas/Stock.xaml" 
+           NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

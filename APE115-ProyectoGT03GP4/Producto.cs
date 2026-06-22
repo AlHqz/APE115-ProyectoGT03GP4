@@ -14,6 +14,7 @@ namespace APE115_ProyectoGT03GP4
         public int Stock { get; set; }
         public int StockMinimo { get; set; }
         public int IdCategoria { get; set; }
+        public decimal Total { get; set; }
         //Constructor para la clase Producto con validaciones
         public Producto (int idProducto, string descripcion, decimal costo, decimal precio, char estado, int stock, int stockMinimo, int idCategoria)
         {
@@ -32,6 +33,7 @@ namespace APE115_ProyectoGT03GP4
             this.Stock = stock;
             this.StockMinimo = stockMinimo;
             this.IdCategoria = idCategoria;
+            this.Total = precio * stock;
         }
         //Método para generar reportes de reabastecimiento
         public bool Reabestecer()
