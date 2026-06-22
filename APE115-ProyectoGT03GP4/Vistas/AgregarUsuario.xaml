@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="AgregarUsuario" Height="530" Width="800" Loaded="Window_Loaded">
     <Grid Margin="10,10,10,98">
+        <StackPanel Margin="0,27,0,5"/>
         <Viewbox Margin="0,27,0,111"/>
 
         <GroupBox HorizontalAlignment="Center" Height="389" Header="Informacion de Usuario" Margin="0,27,0,0" VerticalAlignment="Top" Width="736">
@@ -27,10 +28,9 @@
                 <Label Content="Repetir Contraseña" HorizontalAlignment="Left" Margin="28,178,0,0" VerticalAlignment="Top" FontSize="14"/>
                 <PasswordBox x:Name="txtContraR" HorizontalAlignment="Center" VerticalAlignment="Top" Width="668" Height="40" Margin="0,211,0,0"/>
                 <Label Content="Tipo de Usuario" HorizontalAlignment="Left" Margin="28,264,0,0" VerticalAlignment="Top" FontSize="14"/>
-                <ComboBox x:Name="cbTipoUsuario" HorizontalAlignment="Center" Margin="0,298,0,0" VerticalAlignment="Top" Width="668" Height="41"/>
+                <ComboBox x:Name="cbTipoUsuario" HorizontalAlignment="Center" Margin="0,298,0,0" VerticalAlignment="Top" Width="668" Height="41" DisplayMemberPath="nombreTipoUsuario" SelectedValuePath="idTipoUsuario"/>
             </Grid>
         </GroupBox>
-        <StackPanel Margin="0,27,0,5"/>
         <Grid Margin="0,416,22,-95">
             <Button Content="Registrarse" HorizontalAlignment="Left" Margin="33,0,0,0" VerticalAlignment="Center" Width="231" Height="47" FontSize="14" Foreground="White" FontWeight="Bold" Background="#FF0B41D1" Click="Button_Click"/>
         </Grid>

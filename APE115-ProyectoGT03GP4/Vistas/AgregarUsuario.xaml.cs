@@ -31,7 +31,38 @@ namespace APE115_ProyectoGT03GP4.Vistas
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            string usuario = txtusuario.Text;
+            string contra = txtContra.Password;
+            string contraR = txtContraR.Password;
+
+            if (contra == contraR)
+            {
+
+                if (cbTipoUsuario.SelectedItem is TipoUsuario tipoSeleccionado)
+                {
+                    Usuario nuevoUsuario = new Usuario(usuario, contra, tipoSeleccionado.idTipoUsuario, false);
+                    if (nuevoUsuario.addUser(nuevoUsuario.getNombreUsuario(), nuevoUsuario.getContraseña(), nuevoUsuario.getIdTipoUsuario()))
+                    {
+                        MessageBox.Show("Usuario agregado exitosamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                        LoginWindow lw = new LoginWindow();
+                        lw.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al agregar el usuario.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, seleccione un tipo de usuario.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Las contraseñas no coinciden. Por favor, inténtelo de nuevo.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -43,18 +74,10 @@ namespace APE115_ProyectoGT03GP4.Vistas
 
             if (datosTiposUsuario.Count > 0)
             {
-                for (int i = 0; i < datosTiposUsuario.Count; i++)
-                {
-                    comboItems.Add(new DatoComboTipoUsuario
-                    {
-                        Id = datosTiposUsuario[i].idTipoUsuario,
-                        Nombre = datosTiposUsuario[i].nombreTipoUsuario.ToString()
-                    });
-                }
-                
+                cbTipoUsuario.ItemsSource = datosTiposUsuario;
             }
 
-            cbTipoUsuario.ItemsSource = comboItems;
+            
         }
     }
 }
