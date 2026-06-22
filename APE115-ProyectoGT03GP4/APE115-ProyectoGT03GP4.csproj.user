@@ -8,7 +8,10 @@
     <Compile Update="VistaAdmin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="VistaEmpleado.xaml.cs">
+    <Compile Update="Vistas\Empleado\VistaEmpleado.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Vistas\Stock.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
