@@ -51,10 +51,6 @@ namespace APE115_ProyectoGT03GP4.Vistas.Admin
             }
             catch (MySqlException ex)
             {
-                if (ex.Number == 1062)
-                {
-                    MessageBox.Show("Esta categoría ya se encuentra registrada en el sistema.", "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
-                }
                 MessageBox.Show("Error crítico en la base de datos al registrar: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

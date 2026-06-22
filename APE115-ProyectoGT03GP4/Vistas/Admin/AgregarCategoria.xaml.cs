@@ -25,8 +25,17 @@ namespace APE115_ProyectoGT03GP4.Vistas.Admin
 
         private void BtnGuardarCategoria_Click(object sender, RoutedEventArgs e)
         {
-            if(!String.IsNullOrEmpty(TxtNombreCategoria.Text))
+            List<Categoria> categorias = VistasProducto.Categorias();
+            if (!String.IsNullOrEmpty(TxtNombreCategoria.Text))
             {
+                foreach (var categoria in categorias)
+                {
+                    if (categoria.Nombre == TxtNombreCategoria.Text)
+                    {
+                        MessageBox.Show("Esta categoría ya se encuentra registrada en el sistema.", "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+                        return;
+                    }
+                }
                 GestionAdmin.AgregarCategoria(TxtNombreCategoria.Text);
             }
         }
