@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\aleja\Desktop\APE115-ProyectoGT03GP4\APE115-ProyectoGT03GP4\obj\Debug\net10.0-windows\
+C:\Users\jose.mendoza\source\repos\APE115-ProyectoGT03GP4\APE115-ProyectoGT03GP4\obj\Debug\net10.0-windows\
 APE115_ProyectoGT03GP4
 none
 false
 TRACE;DEBUG;NET;NET10_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-C:\Users\aleja\Desktop\APE115-ProyectoGT03GP4\APE115-ProyectoGT03GP4\App.xaml
-2-216653475
+C:\Users\jose.mendoza\source\repos\APE115-ProyectoGT03GP4\APE115-ProyectoGT03GP4\App.xaml
+4-1801450725
 
-6-1522483909
-213-1898574906
-LoginWindow.xaml;MainWindow.xaml;
+8985199637
+2131053953073
+LoginWindow.xaml;MainWindow.xaml;VistaAdmin.xaml;VistaEmpleado.xaml;
 
 False
 
