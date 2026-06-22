@@ -9,6 +9,11 @@ namespace APE115_ProyectoGT03GP4
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            DotNetEnv.Env.Load();
+        }
     }
 
 }

@@ -8,20 +8,43 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Stock">
 
-    <Grid>
-        <StackPanel Margin="20">
-            <DockPanel Margin="10">
-                <TextBlock Text="Stock Actual" FontSize="20" FontWeight="Bold" Margin="0,0,20,0"/>
-                <TextBlock Text="Filtrar por categoría: " FontSize="12"/>
-            </DockPanel>
-            <DataGrid x:Name="StockDataGrid" AutoGenerateColumns="False" Margin="10">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID Producto" Binding="{Binding IdProducto}" Width="*"/>
-                    <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
-                    <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" Width="*"/>
-                    <DataGridTextColumn Header="Precio Unitario" Binding="{Binding PrecioUnitario}" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Margin="10,0,10,15" LastChildFill="False">
+            <TextBlock Text="Stock Actual" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="Filtrar por categoría: " FontSize="13" VerticalAlignment="Center" Margin="50,0,15,0"/>
+                <ComboBox x:Name="CmbCategoria" Width="180" Height="28" VerticalContentAlignment="Center"
+                          DisplayMemberPath="Nombre" SelectedValuePath="IdCategoria" SelectionChanged="CmbCategoria_SelectionChanged"/>
+            </StackPanel>
+        </DockPanel>
+
+        <DataGrid x:Name="DtgProductos" Grid.Row="1" AutoGenerateColumns="False" Margin="10" 
+                  AlternatingRowBackground="#F9F9F9" GridLinesVisibility="Horizontal" HeadersVisibility="Column">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID Producto" Binding="{Binding IdProducto}" Width="80"/>
+                <DataGridTextColumn Header="Descripción / Nombre" Binding="{Binding Descripcion}" Width="*"/>
+                <DataGridTextColumn Header="Cantidad disponible" Binding="{Binding Stock}" Width="150"/>
+                <DataGridTextColumn Header="Precio Unitario" Binding="{Binding Precio, StringFormat={}{0:C}}" Width="120"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <!--Botones para modificar stock-->
+
+        <UniformGrid Grid.Row="3" Columns="3" Margin="10,15,10,10" Height="45">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="Cantidad: " FontSize="13" VerticalAlignment="Center" Margin="50,0,15,0"/>
+                <TextBox x:Name="TxtCantidad" Width="100"/>
+            </StackPanel>
+            <Button x:Name="BtnAgregar" Content="➕ Agregar Stock" FontSize="14" FontWeight="SemiBold" 
+                    Background="#2ECC71" Foreground="White" Margin="0,0,10,0" Click="AgregarStock"/>
+            <Button x:Name="BtnRetirar" Content="➖ Retirar Stock" FontSize="14" FontWeight="SemiBold" 
+                    Background="#E74C3C" Foreground="White" Margin="10,0,0,0" Click="RetirarStock"/>
+        </UniformGrid>
     </Grid>
 </Page>
