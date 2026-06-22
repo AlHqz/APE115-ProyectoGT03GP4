@@ -79,5 +79,12 @@ namespace APE115_ProyectoGT03GP4.Vistas
 
             
         }
+
+        private void btnRegresar_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow lw = new LoginWindow();
+            lw.Show();
+            this.Close();
+        }
     }
 }

@@ -33,6 +33,7 @@
         </GroupBox>
         <Grid Margin="0,416,22,-95">
             <Button Content="Registrarse" HorizontalAlignment="Left" Margin="33,0,0,0" VerticalAlignment="Center" Width="231" Height="47" FontSize="14" Foreground="White" FontWeight="Bold" Background="#FF0B41D1" Click="Button_Click"/>
+            <Button x:Name="btnRegresar" Content="Regresar" HorizontalAlignment="Left" Margin="512,0,0,0" VerticalAlignment="Center" Height="47" Width="199" Background="#FFCF0B0B" FontSize="14" Foreground="White" FontWeight="Bold" Click="btnRegresar_Click"/>
         </Grid>
 
     </Grid>
