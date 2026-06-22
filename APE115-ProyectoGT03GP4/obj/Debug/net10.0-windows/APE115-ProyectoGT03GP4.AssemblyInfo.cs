@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("APE115-ProyectoGT03GP4")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f44ab19a9adea5f72015da5422b0559c3cb074d3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0449a03b45de7ce8bf6f39958ca6b43b6fc6840a")]
 [assembly: System.Reflection.AssemblyProductAttribute("APE115-ProyectoGT03GP4")]
 [assembly: System.Reflection.AssemblyTitleAttribute("APE115-ProyectoGT03GP4")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -10,14 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
     <None Remove="inventario-icon.png" />
   </ItemGroup>
 
   <ItemGroup>
-=======
-    <PackageReference Include="DotNetEnv" Version="3.2.0" />
->>>>>>> 0eab1e722dbff6513d9516e4b2914f7eaa031632
     <PackageReference Include="MySql.Data" Version="9.7.0" />
     <PackageReference Include="MySqlConnector" Version="2.6.0" />
   </ItemGroup>
